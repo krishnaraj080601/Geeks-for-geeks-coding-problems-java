@@ -1,4 +1,4 @@
-<h2><a href="https://practice.geeksforgeeks.org/problems/largest-prime-factor2601/0">Largest prime factor</a></h2><h3>Difficulty Level : Medium</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size: 14pt;">Given a number <strong>N</strong>, the task is to find the largest prime factor of that number.</span><br><span style="font-size: 14pt;">&nbsp;</span><span style="font-size: 14pt;"><strong>Example 1:</strong></span></p>
+<h2><a href="https://practice.geeksforgeeks.org/problems/largest-prime-factor2601/1">Largest prime factor</a></h2><h3>Difficulty Level : Medium</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size: 14pt;">Given a number <strong>N</strong>, the task is to find the largest prime factor of that number.</span><br><span style="font-size: 14pt;">&nbsp;</span><span style="font-size: 14pt;"><strong>Example 1:</strong></span></p>
 <pre><span style="font-size: 14pt;"><strong>Input:</strong>
 N = 5
 <strong>Output:</strong>
