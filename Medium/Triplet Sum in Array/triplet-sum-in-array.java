@@ -28,6 +28,8 @@ class Main
 // } Driver Code Ends
 
 
+
+
 //User function Template for Java
 
 class Solution
@@ -42,7 +44,7 @@ class Solution
       for(int i=0;i<n;i++){
           map.add(A[i]);
       }
-      for(int i=0;i<n-1;i++){
+      for(int i=0;i<n;i++){
           for(int j=i+1;j<n;j++){
               int temp=X-A[i]-A[j];
             if (map.contains(temp) && temp != A[i] && temp!= A[j]){
