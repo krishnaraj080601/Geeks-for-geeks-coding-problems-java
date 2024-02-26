@@ -22,6 +22,8 @@ class Triplets{
 // } Driver Code Ends
 
 
+
+
 /*Complete the function below*/
 
 
@@ -33,6 +35,7 @@ class Solution
 	public boolean findTriplets(int arr[] , int n)
     {
        
+      
          // Iterate through the array elements to form triplets
         for (int i = 0; i < n - 1; i++) {
             // Create a HashSet to store elements we've seen so far
@@ -44,10 +47,10 @@ class Solution
             // Check if the current sum can be achieved with any pair of elements
             for (int j = i + 1; j < n; j++) {
                 // Calculate the required sum for the pair
-                int requiredSum = currSum - arr[j];
+                int temp = currSum - arr[j];
                 
                 // If the required sum exists in the hash set, we found a triplet
-                if (hashSet.contains(requiredSum)) {
+                if (hashSet.contains(temp)) {
                     return true;
                 }
                 
