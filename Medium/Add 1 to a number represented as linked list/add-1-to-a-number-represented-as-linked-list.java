@@ -46,8 +46,6 @@ class GfG
 // } Driver Code Ends
 
 
-
-
 /*
 class Node{
     int data;
@@ -63,41 +61,50 @@ class Node{
 class Solution
 {
     public static Node addOne(Node head) 
-  {
-        // Reverse the linked list to perform addition from the least significant digit
-        head = reverse(head);
-
+    { 
+        //code here.
+         Node prev = null;
         Node current = head;
-        int carry = 1; // Start with a carry of 1 (to add 1)
-        while (current != null && carry > 0) {
-            int sum = current.data + carry;
-            current.data = sum % 10; // Update the current digit
-            carry = sum / 10; // Update the carry for the next iteration
-            if (carry > 0 && current.next == null) {
-                // If there is a carry and we reached the last digit, add a new node
-                current.next = new Node(carry);
-                carry = 0; // Reset carry
-            }
-            current = current.next; // Move to the next digit
-        }
-
-        // Reverse the linked list back to its original order
-        head = reverse(head);
-
-        return head;
-    }
-
-    // Helper function to reverse a linked list
-    private static Node reverse(Node head) {
-        Node prev = null;
-        Node current = head;
+        Node next = null;
+        
         while (current != null) {
-            Node nextNode = current.next;
+            next = current.next;
             current.next = prev;
             prev = current;
-            current = nextNode;
+            current = next;
         }
-        return prev; 
-  }
-    
+        head = prev;
+        
+        // Add 1 to the number represented by the linked list
+        Node temp = head;
+        int carry = 1;
+        while (temp != null) {
+            int sum = temp.data + carry;
+            temp.data = sum % 10;
+            carry = sum / 10;
+            if (carry == 0) {
+                break;
+            }
+            if (temp.next == null) {
+                temp.next = new Node(carry);
+                break;
+            }
+            temp = temp.next;
+        }
+        
+        // Reverse the linked list again
+        prev = null;
+        current = head;
+        next = null;
+        
+        while (current != null) {
+            next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        }
+        head = prev;
+        
+        return head;
+    }
 }
