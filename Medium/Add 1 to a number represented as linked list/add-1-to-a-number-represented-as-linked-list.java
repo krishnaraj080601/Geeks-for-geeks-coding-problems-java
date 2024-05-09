@@ -46,6 +46,8 @@ class GfG
 // } Driver Code Ends
 
 
+
+
 /*
 class Node{
     int data;
@@ -58,41 +60,53 @@ class Node{
 } 
 */
 
-//mport java.util.ArrayList;
-
-class Solution {
-    public static Node addOne(Node head) { 
-        // Convert the linked list to an ArrayList
-        ArrayList<Integer> digits = new ArrayList<>();
+class Solution
+{
+    public static Node addOne(Node head) 
+    { 
+        //code here.
+        ArrayList<Integer> x = new ArrayList<>();
         Node temp = head;
+        int count = 0;
+        
+        // Populate ArrayList with node data
         while (temp != null) {
-            digits.add(temp.data);
+            x.add(temp.data);
             temp = temp.next;
+            count++;
         }
-
-        // Initialize carry to 1 for adding 1
-        int carry = 1;
+        
+        int carry = 1; // Initialize carry to 1 for adding 1
         
         // Process digits and update ArrayList
-        for (int i = digits.size() - 1; i >= 0 && carry != 0; i--) {
-            int sum = digits.get(i) + carry;
-            digits.set(i, sum % 10); // Update the digit with the new value
+        for (int i = count - 1; i >= 0; i--) {
+            int sum = x.get(i) + carry;
+            x.set(i, sum % 10); // Update the digit with the new value
             carry = sum / 10; // Update carry
+            
+            if (carry == 0) {
+                break; // If no carry, no need to continue
+            }
         }
-
-        // If there's a carry after adding 1, add a new node to represent it
-        if (carry > 0) {
-            digits.add(0, carry);
+        
+        // Handle remaining carry
+       
+        
+        // Update linked list nodes with new values
+        temp = head;
+        for (int i = 0; i < count; i++) {
+            temp.data = x.get(i);
+            temp = temp.next;
         }
-
-        // Create a new linked list from the updated ArrayList
-        Node dummy = new Node(0); // Dummy node to simplify insertion
-        Node tail = dummy;
-        for (int digit : digits) {
-            tail.next = new Node(digit);
-            tail = tail.next;
+         if (carry > 0) {
+            Node newHead = new Node(carry);
+            newHead.next = head;
+            head = newHead;
         }
-
-        return dummy.next;
+        
+        return head;
     }
 }
+        
+
+
