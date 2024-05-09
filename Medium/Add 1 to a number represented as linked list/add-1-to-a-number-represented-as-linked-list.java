@@ -58,53 +58,41 @@ class Node{
 } 
 */
 
-class Solution
-{
-    public static Node addOne(Node head) 
-    { 
-        //code here.
-         Node prev = null;
-        Node current = head;
-        Node next = null;
-        
-        while (current != null) {
-            next = current.next;
-            current.next = prev;
-            prev = current;
-            current = next;
-        }
-        head = prev;
-        
-        // Add 1 to the number represented by the linked list
+//mport java.util.ArrayList;
+
+class Solution {
+    public static Node addOne(Node head) { 
+        // Convert the linked list to an ArrayList
+        ArrayList<Integer> digits = new ArrayList<>();
         Node temp = head;
-        int carry = 1;
         while (temp != null) {
-            int sum = temp.data + carry;
-            temp.data = sum % 10;
-            carry = sum / 10;
-            if (carry == 0) {
-                break;
-            }
-            if (temp.next == null) {
-                temp.next = new Node(carry);
-                break;
-            }
+            digits.add(temp.data);
             temp = temp.next;
         }
+
+        // Initialize carry to 1 for adding 1
+        int carry = 1;
         
-        // Reverse the linked list again
-        prev = null;
-        current = head;
-        next = null;
-        
-        while (current != null) {
-            next = current.next;
-            current.next = prev;
-            prev = current;
-            current = next;
+        // Process digits and update ArrayList
+        for (int i = digits.size() - 1; i >= 0 && carry != 0; i--) {
+            int sum = digits.get(i) + carry;
+            digits.set(i, sum % 10); // Update the digit with the new value
+            carry = sum / 10; // Update carry
         }
-        head = prev;
-        
-        return head;
+
+        // If there's a carry after adding 1, add a new node to represent it
+        if (carry > 0) {
+            digits.add(0, carry);
+        }
+
+        // Create a new linked list from the updated ArrayList
+        Node dummy = new Node(0); // Dummy node to simplify insertion
+        Node tail = dummy;
+        for (int digit : digits) {
+            tail.next = new Node(digit);
+            tail = tail.next;
+        }
+
+        return dummy.next;
     }
 }
